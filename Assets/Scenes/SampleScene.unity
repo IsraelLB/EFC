@@ -765,6 +765,9 @@ MonoBehaviour:
   - {fileID: 6432504167221937699, guid: 9ad0a4b1583ced94abb8a628e6a7498d, type: 3}
   - {fileID: 6432504167221937699, guid: e7b148b805ecf7f408eabdd8e0da1f2d, type: 3}
   - {fileID: 6432504167221937699, guid: 4b6885ecbdbcff04d9d009ab27362c20, type: 3}
+  - {fileID: 904154722927318934, guid: 91b373ad8c2ed524cbb24fae68ec0797, type: 3}
+  - {fileID: 904154722927318934, guid: 2c79ef7a3500a4741b7f23d920ef70d8, type: 3}
+  - {fileID: 904154722927318934, guid: 5ea2ebe3658c90243b55af15bf52990c, type: 3}
   suelosDiferencia: 10
 --- !u!4 &1009299698
 Transform:
