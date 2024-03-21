@@ -515,7 +515,7 @@ Transform:
   m_GameObject: {fileID: 409127415}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.551774, y: 0.55546546, z: -0.18495035}
+  m_LocalPosition: {x: 0.551774, y: 0.55546546, z: 0.18495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -768,6 +768,12 @@ MonoBehaviour:
   - {fileID: 904154722927318934, guid: 91b373ad8c2ed524cbb24fae68ec0797, type: 3}
   - {fileID: 904154722927318934, guid: 2c79ef7a3500a4741b7f23d920ef70d8, type: 3}
   - {fileID: 904154722927318934, guid: 5ea2ebe3658c90243b55af15bf52990c, type: 3}
+  - {fileID: 1862399694735797223, guid: 7c3a188accd7d8c4e8658bf93d873255, type: 3}
+  - {fileID: 1862399694735797223, guid: 6fac74c45163b234daa9b915897c067f, type: 3}
+  - {fileID: 1862399694735797223, guid: 3d30a67191750f140b5f815eea72c952, type: 3}
+  - {fileID: 1862399694735797223, guid: a2b19a410b1b90a479efd1d4c47a0f22, type: 3}
+  - {fileID: 904154722927318934, guid: 569ade88fef46fe4c862c90fd802636d, type: 3}
+  - {fileID: 1862399694735797223, guid: 6fac74c45163b234daa9b915897c067f, type: 3}
   suelosDiferencia: 10
 --- !u!4 &1009299698
 Transform:
@@ -851,6 +857,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1309574118}
   - component: {fileID: 1309574117}
+  - component: {fileID: 1309574120}
+  - component: {fileID: 1309574119}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Untagged
@@ -880,7 +888,11 @@ MonoBehaviour:
   capaObstaculos:
     serializedVersion: 2
     m_Bits: 64
+  capaAgua:
+    serializedVersion: 2
+    m_Bits: 16
   distanciaVista: 1.1
+  vivo: 1
 --- !u!4 &1309574118
 Transform:
   m_ObjectHideFlags: 0
@@ -898,6 +910,54 @@ Transform:
   - {fileID: 2093832487}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1309574119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309574116}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3831075, y: 0.71983165, z: 0.2863962}
+  m_Center: {x: 0.0063541085, y: 0.36375263, z: -0.032635428}
+--- !u!54 &1309574120
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309574116}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &1332003187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: df3d45a3ea1735d438c9ee90a83779a9, type: 3}
