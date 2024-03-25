@@ -883,7 +883,7 @@ MonoBehaviour:
   lateral: 0
   posicionZ: 0
   posObjetivo: {x: 0, y: 0, z: 0}
-  velocidad: 18
+  velocidad: 300
   mundo: {fileID: 1009299697}
   grafico: {fileID: 2093832487}
   capaObstaculos:
@@ -895,6 +895,39 @@ MonoBehaviour:
   distanciaVista: 1.1
   vivo: 1
   animaciones: {fileID: 1309574121}
+  curva:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.0191463
+      outSlope: 1.0191463
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49984872
+      value: 0.50941896
+      inSlope: 0.00030827522
+      outSlope: 0.00030827522
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.0185298
+      outSlope: -1.0185298
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1309574118
 Transform:
   m_ObjectHideFlags: 0
