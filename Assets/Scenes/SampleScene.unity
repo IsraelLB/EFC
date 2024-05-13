@@ -859,6 +859,7 @@ MonoBehaviour:
   - {fileID: 1862399694735797223, guid: a2b19a410b1b90a479efd1d4c47a0f22, type: 3}
   - {fileID: 904154722927318934, guid: 569ade88fef46fe4c862c90fd802636d, type: 3}
   - {fileID: 1862399694735797223, guid: 6fac74c45163b234daa9b915897c067f, type: 3}
+  - {fileID: 904154722927318934, guid: 9697f494ad371304298d340e9e7eb5fa, type: 3}
   suelosDiferencia: 10
   primerSuelo: {fileID: 904154722927318934, guid: 569ade88fef46fe4c862c90fd802636d, type: 3}
 --- !u!4 &1009299698
