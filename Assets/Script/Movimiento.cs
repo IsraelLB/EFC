@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movimiento : MonoBehaviour
 {
@@ -49,7 +50,8 @@ public class Movimiento : MonoBehaviour
     }
     public void ActualizarPosicion(){
         if(!vivo){
-            return;
+            //añadir una pantalla de game over
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
     }
