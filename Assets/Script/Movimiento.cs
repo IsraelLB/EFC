@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Movimiento : MonoBehaviour
 {
     public int carril;
@@ -14,16 +15,20 @@ public class Movimiento : MonoBehaviour
     public Transform grafico;
     public LayerMask capaObstaculos;
     public LayerMask capaAgua;
+    public LayerMask capaSueloSeguro;
     public float distanciaVista=1;
     public bool vivo = true;
     public Animator animaciones;
     public AnimationCurve curva;
+
+    private int countminijueho=0;
 
     bool bloqueo = false;
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("MirarAgua",1,0.5f);
+        //InvokeRepeating("MirarSueloSeguro",1,0.5f);
     }
 
     // Update is called once per frame
@@ -49,10 +54,12 @@ public class Movimiento : MonoBehaviour
         Gizmos.DrawLine(grafico.position + Vector3.up * 0.5f,grafico.position + Vector3.up * 0.5f + grafico.forward * distanciaVista);
     }
     public void ActualizarPosicion(){
+
         if(!vivo){
-            //añadir una pantalla de game over
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+           StartCoroutine(GameOverSequence());
         }
+        
 
     }
       
@@ -77,6 +84,7 @@ public class Movimiento : MonoBehaviour
 
     public void Avanzar()
     {
+        MirarSueloSeguro();
         if(!vivo || bloqueo){
             return;
         }
@@ -141,7 +149,7 @@ public class Movimiento : MonoBehaviour
             vivo=false;
         }
     }
-    public void MirarAgua()
+    public void MirarAgua() 
     {
         RaycastHit hit;
         Ray rayo = new Ray(grafico.position + Vector3.up,Vector3.down);
@@ -152,6 +160,40 @@ public class Movimiento : MonoBehaviour
                 animaciones.SetTrigger("agua");
                 vivo=false;
             }
+            if(hit.collider.CompareTag("sueloseguro"))
+            {
+                if(countminijueho==3){
+                    Debug.Log("Ganaste el minijuego");        
+                    countminijueho=0;
+                }
+                countminijueho++;
+                Debug.Log("minijuego"); 
+                
+            }
         }
+    }
+     public void MirarSueloSeguro(){
+        RaycastHit hit;
+        Ray rayo = new Ray(grafico.position + Vector3.up+ Vector3.forward,Vector3.down);
+        if(Physics.Raycast(rayo,out hit,2, capaSueloSeguro))
+        {
+            if(hit.collider.CompareTag("sueloseguro"))
+            {
+                if(countminijueho==20){
+                    Debug.Log("Salta el minijuego");      
+                    //Aqui salta el minijuego  
+                    countminijueho=0;
+                }
+                countminijueho++;
+            }
+        }
+     } 
+    private IEnumerator GameOverSequence()
+    {
+        // Añadir una pantalla de game over aquí
+
+        yield return new WaitForSeconds(2); // Espera 2 segundos
+
+        SceneManager.LoadScene("MenuPrincipal"); // Redirige a la escena "menu Principal"
     }
 }

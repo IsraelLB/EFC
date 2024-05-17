@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4671162169685952510}
   - component: {fileID: 5827985920762226672}
   - component: {fileID: 8746733830291385590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: sueloseguro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
