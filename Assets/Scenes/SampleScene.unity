@@ -1363,6 +1363,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   chef: {fileID: 2044144970}
+  eventSystemPrincipal: {fileID: 860829247}
 --- !u!4 &1309574118
 Transform:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private Carta segundaCarta;
     public bool puedeSeleccionar = true;
     private int paresEncontrados = 0;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -23,6 +24,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+     private void Start()
+    {
+        audioSource = GetComponent<AudioSource>(); 
     }
 
     public void RegistrarSeleccion(Carta cartaSeleccionada)
@@ -48,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             primeraCarta.GetComponent<Button>().interactable = false;
             segundaCarta.GetComponent<Button>().interactable = false;
-            AudioSource.PlayClipAtPoint(sonidoCorrecto, Camera.main.transform.position);
+            audioSource.PlayOneShot(sonidoCorrecto);
             paresEncontrados++;
             
             if (paresEncontrados == 8)

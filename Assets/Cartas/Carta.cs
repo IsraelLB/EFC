@@ -11,6 +11,7 @@ public class Carta : MonoBehaviour, IPointerClickHandler
 
     private Image imageComponent;
     private GameManager gameManager;
+    private AudioSource audioSource;
 
     private bool seleccionada = false;
 
@@ -20,6 +21,7 @@ public class Carta : MonoBehaviour, IPointerClickHandler
     {
         imageComponent = GetComponent<Image>();
         gameManager = FindObjectOfType<GameManager>();
+        audioSource = GetComponent<AudioSource>();
         VoltearBocaAbajo();
     }
 
@@ -58,7 +60,7 @@ public class Carta : MonoBehaviour, IPointerClickHandler
         }
         if (sonidoVoltear != null)
         {
-        AudioSource.PlayClipAtPoint(sonidoVoltear, Camera.main.transform.position);
+        audioSource.PlayOneShot(sonidoVoltear);
         }
     }
 

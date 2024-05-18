@@ -25,6 +25,7 @@ public class Movimiento : MonoBehaviour
     public GameObject chef;
 
 
+
     bool bloqueo = false;
     // Start is called before the first frame update
     void Start()
