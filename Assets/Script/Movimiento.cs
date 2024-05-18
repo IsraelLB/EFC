@@ -23,6 +23,7 @@ public class Movimiento : MonoBehaviour
 
     private int countminijueho=0;
 
+
     bool bloqueo = false;
     // Start is called before the first frame update
     void Start()
@@ -160,16 +161,6 @@ public class Movimiento : MonoBehaviour
                 animaciones.SetTrigger("agua");
                 vivo=false;
             }
-            if(hit.collider.CompareTag("sueloseguro"))
-            {
-                if(countminijueho==3){
-                    Debug.Log("Ganaste el minijuego");        
-                    countminijueho=0;
-                }
-                countminijueho++;
-                Debug.Log("minijuego"); 
-                
-            }
         }
     }
      public void MirarSueloSeguro(){
@@ -180,7 +171,8 @@ public class Movimiento : MonoBehaviour
             if(hit.collider.CompareTag("sueloseguro"))
             {
                 if(countminijueho==20){
-                    Debug.Log("Salta el minijuego");      
+                    Debug.Log("Salta el minijuego");    
+                    SceneManager.LoadScene("MinijuegoMemoria", LoadSceneMode.Additive); 
                     //Aqui salta el minijuego  
                     countminijueho=0;
                 }

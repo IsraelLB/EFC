@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private Carta primeraCarta;
     private Carta segundaCarta;
     public bool puedeSeleccionar = true;
+    private int paresEncontrados = 0;
 
     private void Awake()
     {
@@ -47,10 +48,15 @@ public class GameManager : MonoBehaviour
         {
             primeraCarta.GetComponent<Button>().interactable = false;
             segundaCarta.GetComponent<Button>().interactable = false;
+            paresEncontrados++;
             if (sonidoCorrecto != null)
-        {
+            {
             AudioSource.PlayClipAtPoint(sonidoCorrecto, Camera.main.transform.position);
-        }
+            }
+            if (paresEncontrados == 8)
+            {
+                SceneManager.UnloadSceneAsync("minijuegoMemoria");
+            }
         }
         else
         {
