@@ -1291,7 +1291,6 @@ GameObject:
   - component: {fileID: 1309574120}
   - component: {fileID: 1309574119}
   - component: {fileID: 1309574121}
-  - component: {fileID: 1309574122}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Untagged
@@ -1363,6 +1362,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  chef: {fileID: 2044144970}
 --- !u!4 &1309574118
 Transform:
   m_ObjectHideFlags: 0
@@ -1449,21 +1449,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1309574122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309574116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beccd3c80368f3e40ae8f762e58760f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainGameAudioPlayer: {fileID: 0}
-  mainGameAudioSources:
-  - {fileID: 2044144977}
 --- !u!4 &1332003187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: df3d45a3ea1735d438c9ee90a83779a9, type: 3}
