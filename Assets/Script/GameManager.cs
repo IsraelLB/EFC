@@ -48,14 +48,20 @@ public class GameManager : MonoBehaviour
         {
             primeraCarta.GetComponent<Button>().interactable = false;
             segundaCarta.GetComponent<Button>().interactable = false;
-            paresEncontrados++;
-            if (sonidoCorrecto != null)
-            {
             AudioSource.PlayClipAtPoint(sonidoCorrecto, Camera.main.transform.position);
-            }
+            paresEncontrados++;
+            
             if (paresEncontrados == 8)
             {
-                SceneManager.UnloadSceneAsync("minijuegoMemoria");
+                SceneManager.UnloadSceneAsync("MinijuegoMemoria").completed += (op) =>
+                {
+                    // Reactivar el objeto Chef al finalizar el minijuego
+                    Movimiento movimiento = FindObjectOfType<Movimiento>();
+                    if (movimiento != null)
+                    {
+                        movimiento.ReactivarChef();
+                    }
+                };
             }
         }
         else

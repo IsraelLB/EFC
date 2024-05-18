@@ -22,6 +22,7 @@ public class Movimiento : MonoBehaviour
     public AnimationCurve curva;
 
     private int countminijueho=0;
+    public GameObject chef;
 
 
     bool bloqueo = false;
@@ -171,7 +172,8 @@ public class Movimiento : MonoBehaviour
             if(hit.collider.CompareTag("sueloseguro"))
             {
                 if(countminijueho==20){
-                    Debug.Log("Salta el minijuego");    
+                    Debug.Log("Salta el minijuego");   
+                    chef.SetActive(false); 
                     SceneManager.LoadScene("MinijuegoMemoria", LoadSceneMode.Additive); 
                     //Aqui salta el minijuego  
                     countminijueho=0;
@@ -187,5 +189,10 @@ public class Movimiento : MonoBehaviour
         yield return new WaitForSeconds(2); // Espera 2 segundos
 
         SceneManager.LoadScene("MenuPrincipal"); // Redirige a la escena "menu Principal"
+    }
+
+    public void ReactivarChef()
+    {
+        chef.SetActive(true);  // Reactivar el objeto Chef
     }
 }
