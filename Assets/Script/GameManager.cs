@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
             
             if (paresEncontrados == 8)
             {
+                yield return new WaitForSeconds(1f);
                 SceneManager.UnloadSceneAsync("MinijuegoMemoria").completed += (op) =>
                 {
                     // Reactivar el objeto Chef al finalizar el minijuego
