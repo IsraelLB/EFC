@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 
 public class Movimiento : MonoBehaviour
@@ -24,6 +26,10 @@ public class Movimiento : MonoBehaviour
     private int countminijueho=0;
     public GameObject chef;
 
+    public TMP_Text scoreText;  
+    private int score = 0;  
+    private HashSet<int> posicionesVisitadas = new HashSet<int>();  
+
 
 
     bool bloqueo = false;
@@ -31,6 +37,7 @@ public class Movimiento : MonoBehaviour
     void Start()
     {
         InvokeRepeating("MirarAgua",1,0.5f);
+        UpdateScoreText();
         //InvokeRepeating("MirarSueloSeguro",1,0.5f);
     }
 
@@ -103,6 +110,10 @@ public class Movimiento : MonoBehaviour
             mundo.CrearSuelos();
         }
         StartCoroutine(CambiarPosicion());
+        if (posicionesVisitadas.Add(posicionZ))
+        {
+            AddPoint();
+        }
     }
     public void Retroceder()
     {
@@ -195,5 +206,19 @@ public class Movimiento : MonoBehaviour
     public void ReactivarChef()
     {
         chef.SetActive(true);  // Reactivar el objeto Chef
+    }
+
+    private void AddPoint()
+    {
+        score++;
+        UpdateScoreText();
+    }
+
+    private void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = score.ToString();
+        }
     }
 }
