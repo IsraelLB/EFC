@@ -9,13 +9,14 @@ public class CarControllerminijuego : MonoBehaviour
     private Vector3 offset;
     private Vector3 startPos;
     private bool dragging;
-    private bool isColliding;
+    private bool canMove;
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        canMove = true; // Permitir el movimiento inicialmente
     }
 
     void OnMouseDown()
@@ -31,11 +32,12 @@ public class CarControllerminijuego : MonoBehaviour
         dragging = false;
         Vector3 finalPosition = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z));
         rb.MovePosition(finalPosition);
+        canMove = true; // Resetear el estado de movimiento al soltar el coche
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (dragging && !isColliding)
+        if (dragging && canMove)
         {
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
@@ -57,7 +59,7 @@ public class CarControllerminijuego : MonoBehaviour
     {
         if (collision.gameObject != gameObject)
         {
-            isColliding = true;
+            canMove = false; // Detener el movimiento al colisionar con otro coche
         }
     }
 
@@ -65,7 +67,7 @@ public class CarControllerminijuego : MonoBehaviour
     {
         if (collision.gameObject != gameObject)
         {
-            isColliding = false;
+            canMove = true; // Permitir el movimiento al salir de la colisión
         }
     }
 }
