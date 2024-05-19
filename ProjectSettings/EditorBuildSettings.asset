@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MinijuegoMemoria.unity
     guid: b7abb58e3f039df4591d8b3e1e0695e0
+  - enabled: 1
+    path: Assets/Scenes/minijuegocoche.unity
+    guid: 4d37adfb81c9c5540892759cf83d6695
   m_configObjects: {}
