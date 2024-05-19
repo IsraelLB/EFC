@@ -29,13 +29,19 @@ public class Movimiento : MonoBehaviour
     public TMP_Text scoreText;  
     private int score = 0;  
     private HashSet<int> posicionesVisitadas = new HashSet<int>();  
+    public Canvas canvasJugando;
+    public Canvas gameOverCanvas;
+    public TMP_Text gameOverScoreText;
 
+    public AudioClip clickBoton;
+    private AudioSource audioSource;
 
 
     bool bloqueo = false;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         InvokeRepeating("MirarAgua",1,0.5f);
         UpdateScoreText();
         //InvokeRepeating("MirarSueloSeguro",1,0.5f);
@@ -196,11 +202,10 @@ public class Movimiento : MonoBehaviour
      } 
     private IEnumerator GameOverSequence()
     {
-        // Añadir una pantalla de game over aquí
-
-        yield return new WaitForSeconds(2); // Espera 2 segundos
-
-        SceneManager.LoadScene("MenuPrincipal"); // Redirige a la escena "menu Principal"
+        canvasJugando.gameObject.SetActive(false);
+        gameOverScoreText.text = "Puntuacion: " + score;
+        gameOverCanvas.gameObject.SetActive(true);
+        yield return null;
     }
 
     public void ReactivarChef()
@@ -220,5 +225,29 @@ public class Movimiento : MonoBehaviour
         {
             scoreText.text = score.ToString();
         }
+    }
+
+    public void Retry()
+    {
+        audioSource.PlayOneShot(clickBoton);
+        StartCoroutine(ReloadSceneAfterSound());
+    }
+
+    public void Exit()
+    {
+        audioSource.PlayOneShot(clickBoton);
+        StartCoroutine(ExitAfterSound());
+    }
+
+    private IEnumerator ReloadSceneAfterSound()
+    {
+        yield return new WaitForSeconds(clickBoton.length);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private IEnumerator ExitAfterSound()
+    {
+        yield return new WaitForSeconds(clickBoton.length);
+        SceneManager.LoadScene("MenuPrincipal");
     }
 }
