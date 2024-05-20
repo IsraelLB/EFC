@@ -41,6 +41,7 @@ public class Movimiento : MonoBehaviour
 
     public AudioClip clickBoton;
     private AudioSource audioSource;
+    public AudioSource Musica;
 
 
     bool bloqueo = false;
@@ -198,6 +199,7 @@ public class Movimiento : MonoBehaviour
                 if(countminijueho==15){
                     Debug.Log("Salta el minijuego");   
                     chef.SetActive(false); 
+                    Musica.Pause();
                     Random.InitState(System.DateTime.Now.Millisecond);
                     eligeMinijuego();
                     countminijueho=0;
@@ -259,6 +261,7 @@ public class Movimiento : MonoBehaviour
     public void ReactivarChef()
     {
         chef.SetActive(true);  // Reactivar el objeto Chef
+        Musica.Play();  // Reactivar Musica
     }
 
     private void AddPoint()
