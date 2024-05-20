@@ -58,6 +58,11 @@ public class MiniJuegoPuzle : MonoBehaviour
         {
             minigamePuzzle.gameObject.SetActive(false);
             mainCamera.gameObject.SetActive(true);
+            Movimiento movimiento = FindObjectOfType<Movimiento>();
+                    if (movimiento != null)
+                    {
+                        movimiento.ReactivarChef();
+                    }
             
         }
     }
