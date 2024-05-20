@@ -8,6 +8,11 @@ using TMPro;
 
 public class Movimiento : MonoBehaviour
 {
+    public Camera mainCamera;
+    public Camera minigameCamera;
+    public Camera minigameCamera1;
+    public Camera minigameCamera2;
+    public Camera minigameCamera3;
     public int carril;
     public int lateral;
     public int posicionZ;
@@ -189,17 +194,42 @@ public class Movimiento : MonoBehaviour
         {
             if(hit.collider.CompareTag("sueloseguro"))
             {
-                if(countminijueho==20){
+                if(countminijueho==15){
                     Debug.Log("Salta el minijuego");   
                     chef.SetActive(false); 
-                    SceneManager.LoadScene("MinijuegoMemoria", LoadSceneMode.Additive); 
-                    //Aqui salta el minijuego  
+                    Random.InitState(System.DateTime.Now.Millisecond);
+                    int randomnum = Random.Range(0, 5);
+                    eligeMinijuego(randomnum);
                     countminijueho=0;
                 }
                 countminijueho++;
             }
         }
      } 
+    private void eligeMinijuego(int randomnum){
+        switch(randomnum){
+            case 0:
+                mainCamera.gameObject.SetActive(false);
+                minigameCamera.gameObject.SetActive(true);
+                break;
+            case 1:
+                mainCamera.gameObject.SetActive(false);
+                minigameCamera1.gameObject.SetActive(true);
+                break;
+            case 2:
+                mainCamera.gameObject.SetActive(false);
+                minigameCamera2.gameObject.SetActive(true);
+                break;
+            case 3:
+                mainCamera.gameObject.SetActive(false);
+                minigameCamera3.gameObject.SetActive(true);
+                break;
+            case 4:
+                SceneManager.LoadScene("MinijuegoMemoria", LoadSceneMode.Additive); 
+                break;
+        }
+    }
+
     private IEnumerator GameOverSequence()
     {
         canvasJugando.gameObject.SetActive(false);
