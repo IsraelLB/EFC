@@ -10,7 +10,7 @@ public class MiniJuegoPuzle : MonoBehaviour
 
     public Camera mainCamera;
     public Camera minigamePuzzle;
-    
+      private Vector3 PosicionCorrecta;
     public GameObject MenuGanar;
     public GameObject PiezaSeleccionada;
     int capa = 1;    
@@ -63,9 +63,32 @@ public class MiniJuegoPuzle : MonoBehaviour
                     {
                         movimiento.ReactivarChef();
                     }
+          ResetearPiezas();
             
         }
     }
+
+void ResetearPiezas()
+{
+    // Restablecer las posiciones de todas las piezas al valor inicial
+    for (int i = 0; i < 36; i++)
+    {
+        float randomX = Random.Range(554f, 561f);
+        float randomY = Random.Range(273f, 279f);
+        GameObject pieza = GameObject.Find("Pieza (" + i + ")");
+        pieza.transform.position = new Vector3(randomX, randomY, 0);
+
+        // Restablecer el estado de la pieza
+        pieza.GetComponent<pieza>().Encajada = false;
+        pieza.GetComponent<pieza>().Seleccionada = false;
+    }
+
+    // Restablecer otras variables necesarias
+    PiezasEncajadas = 0;
+    PiezaSeleccionada = null;
+    capa = 1;
+}
+
 
 
 }

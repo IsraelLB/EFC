@@ -6,8 +6,8 @@ using UnityEngine.Rendering;
 public class pieza : MonoBehaviour
 {
     private Vector3 PosicionCorrecta;
-    public bool Encajada;
-    public bool Seleccionada;
+    public bool Encajada = false;
+    public bool Seleccionada = false;
     private Vector3 offset;
     private Camera mainCamera;
 
