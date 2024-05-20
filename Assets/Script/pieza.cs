@@ -26,43 +26,24 @@ public class pieza : MonoBehaviour
         transform.position = new Vector3(randomX, randomY, 0);
     }
 
-    void OnMouseDown()
+    void Update()
     {
-        if (!Encajada)
+        if (Vector3.Distance(transform.position, PosicionCorrecta) < 0.5f)
         {
-            Seleccionada = true;
-            Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            offset = transform.position - new Vector3(mousePosition.x, mousePosition.y, transform.position.z);
-            GetComponent<SortingGroup>().sortingOrder = FindObjectOfType<MiniJuegoPuzle>().IncrementarCapa();
-        }
-    }
-
-    void OnMouseDrag()
-    {
-        if (Seleccionada)
-        {
-            // Obtiene la posición del ratón en el mundo
-            Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            // Calcula la posición objetivo con la velocidad
-            targetPosition = new Vector3(mousePosition.x + offset.x, mousePosition.y + offset.y, transform.position.z);
-            // Aplica la posición objetivo de manera suavizada
-            transform.position = Vector3.Lerp(transform.position, targetPosition, velocidadArrastre * Time.deltaTime);
-        }
-    }
-
-    void OnMouseUp()
-    {
-        if (Seleccionada)
-        {
-            Seleccionada = false;
-
-            if (Vector3.Distance(transform.position, PosicionCorrecta) < 0.5f)
+            if (!Seleccionada)
             {
-                transform.position = PosicionCorrecta;
-                Encajada = true;
-                GetComponent<SortingGroup>().sortingOrder = 0;
-                FindObjectOfType<MiniJuegoPuzle>().PiezasEncajadas++;
+                if (Encajada == false)
+                {
+                    transform.position = PosicionCorrecta;
+                    Encajada = true;
+                    GetComponent<SortingGroup>().sortingOrder = 0;
+                    Camera.main.GetComponent<MiniJuegoPuzle>().PiezasEncajadas++;
+                }
             }
         }
     }
+
+
+
+
 }

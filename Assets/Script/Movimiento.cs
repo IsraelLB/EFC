@@ -13,6 +13,7 @@ public class Movimiento : MonoBehaviour
     public Camera minigameCamera1;
     public Camera minigameCamera2;
     public Camera minigameCamera3;
+    public Camera minigamePuzzle;
     public int carril;
     public int lateral;
     public int posicionZ;
@@ -210,6 +211,7 @@ public class Movimiento : MonoBehaviour
             // Primero, elegimos entre el minijuego de coche o el de memoria
             int juego = Random.Range(0, 3); // 0 para coche, 1 para memoria, 2 para puzzles
 
+
             if (juego == 0)
             {
                 // Minijuego de coche: elegir aleatoriamente uno de los cuatro niveles
@@ -240,7 +242,8 @@ public class Movimiento : MonoBehaviour
             else if (juego == 2)
             {
                 // Minijuego de puzzles
-                SceneManager.LoadScene("MiniJuegoPuzzle", LoadSceneMode.Additive);
+                mainCamera.gameObject.SetActive(false);
+                minigamePuzzle.gameObject.SetActive(true);
             }
         }
 

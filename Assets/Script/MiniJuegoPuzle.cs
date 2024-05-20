@@ -7,13 +7,18 @@ using UnityEngine.SceneManagement;
 public class MiniJuegoPuzle : MonoBehaviour
 {
     public Sprite[] Niveles;
+
+    public Camera mainCamera;
+    public Camera minigamePuzzle;
+    
     public GameObject MenuGanar;
-    private int capa = 1;    
+    public GameObject PiezaSeleccionada;
+    int capa = 1;    
     public int PiezasEncajadas = 0;
 
     void Start()
     {
-        for (int i = 0; i < 36; i++)
+        for (int i = 0;i < 36; i++)
         {
             GameObject.Find("Pieza (" + i + ")").transform.Find("Puzzle").GetComponent<SpriteRenderer>().sprite = Niveles[PlayerPrefs.GetInt("Nivel")];
         }
@@ -21,14 +26,41 @@ public class MiniJuegoPuzle : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.transform.CompareTag("Puzzle"))
+            {
+                if (!hit.transform.GetComponent<pieza>().Encajada)
+                {
+                    PiezaSeleccionada = hit.transform.gameObject;
+                    PiezaSeleccionada.GetComponent<pieza>().Seleccionada = true;
+                    PiezaSeleccionada.GetComponent<SortingGroup>().sortingOrder = capa;
+                    capa++;
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (PiezaSeleccionada != null)
+            {
+                PiezaSeleccionada.GetComponent<pieza>().Seleccionada = false;
+                PiezaSeleccionada = null;
+            }
+        }
+        if (PiezaSeleccionada != null)
+        {
+            Vector3 raton = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            PiezaSeleccionada.transform.position = new Vector3(raton.x,raton.y,0);
+        }             
         if (PiezasEncajadas == 36)
         {
-             SceneManager.UnloadSceneAsync("MiniJuegoPuzzle");
+            minigamePuzzle.gameObject.SetActive(false);
+            mainCamera.gameObject.SetActive(true);
+            
         }
     }
 
-    public int IncrementarCapa()
-    {
-        return capa++;
-    }
+
 }
