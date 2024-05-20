@@ -198,37 +198,47 @@ public class Movimiento : MonoBehaviour
                     Debug.Log("Salta el minijuego");   
                     chef.SetActive(false); 
                     Random.InitState(System.DateTime.Now.Millisecond);
-                    int randomnum = Random.Range(0, 5);
-                    eligeMinijuego(randomnum);
+                    eligeMinijuego();
                     countminijueho=0;
                 }
                 countminijueho++;
             }
         }
      } 
-    private void eligeMinijuego(int randomnum){
-        switch(randomnum){
-            case 0:
+    private void eligeMinijuego()
+        {
+            // Primero, elegimos entre el minijuego de coche o el de memoria
+            int juego = Random.Range(0, 2); // 0 para coche, 1 para memoria
+
+            if (juego == 0)
+            {
+                // Minijuego de coche: elegir aleatoriamente uno de los cuatro niveles
+                int nivelCoche = Random.Range(0, 4); // 0, 1, 2, o 3
                 mainCamera.gameObject.SetActive(false);
-                minigameCamera.gameObject.SetActive(true);
-                break;
-            case 1:
-                mainCamera.gameObject.SetActive(false);
-                minigameCamera1.gameObject.SetActive(true);
-                break;
-            case 2:
-                mainCamera.gameObject.SetActive(false);
-                minigameCamera2.gameObject.SetActive(true);
-                break;
-            case 3:
-                mainCamera.gameObject.SetActive(false);
-                minigameCamera3.gameObject.SetActive(true);
-                break;
-            case 4:
-                SceneManager.LoadScene("MinijuegoMemoria", LoadSceneMode.Additive); 
-                break;
+
+                switch(nivelCoche)
+                {
+                    case 0:
+                        minigameCamera.gameObject.SetActive(true);
+                        break;
+                    case 1:
+                        minigameCamera1.gameObject.SetActive(true);
+                        break;
+                    case 2:
+                        minigameCamera2.gameObject.SetActive(true);
+                        break;
+                    case 3:
+                        minigameCamera3.gameObject.SetActive(true);
+                        break;
+                }
+            }
+            else if (juego == 1)
+            {
+                // Minijuego de memoria
+                SceneManager.LoadScene("MinijuegoMemoria", LoadSceneMode.Additive);
+            }
         }
-    }
+
 
     private IEnumerator GameOverSequence()
     {
