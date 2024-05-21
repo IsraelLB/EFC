@@ -44,7 +44,7 @@ public class Movimiento : MonoBehaviour
     public AudioSource Musica;
     public AudioSource Musicaminijuegocoche;
     public AudioSource MusicaMiniJuegoPuzzle;
-
+    private int ultimoJuego = -1;
 
     bool bloqueo = false;
     // Start is called before the first frame update
@@ -210,7 +210,7 @@ public class Movimiento : MonoBehaviour
             }
         }
      } 
-    private void eligeMinijuego()
+    /*private void eligeMinijuego()
         {
             // Primero, elegimos entre el minijuego de coche o el de memoria
             int juego = Random.Range(0,3); // 0 para coche, 1 para memoria, 2 para puzzles
@@ -252,6 +252,46 @@ public class Movimiento : MonoBehaviour
 
             }
         }
+        }*/
+
+         private void eligeMinijuego()
+        {
+            int juego = (ultimoJuego + 1) % 3;
+            ultimoJuego = juego;
+
+            if (juego == 0)
+            {
+                int nivelCoche = Random.Range(0, 4); // 0, 1, 2, o 3
+                mainCamera.gameObject.SetActive(false);
+                Musicaminijuegocoche.Play();
+                switch (nivelCoche)
+                {
+                    case 0:
+                        minigameCamera.gameObject.SetActive(true);
+                        break;
+                    case 1:
+                        minigameCamera1.gameObject.SetActive(true);
+                        break;
+                    case 2:
+                        minigameCamera2.gameObject.SetActive(true);
+                        break;
+                    case 3:
+                        minigameCamera3.gameObject.SetActive(true);
+                        break;
+                }
+            }
+            else if (juego == 1)
+            {
+                SceneManager.LoadScene("MinijuegoMemoria", LoadSceneMode.Additive);
+            }
+            else if (juego == 2)
+            {
+                mainCamera.gameObject.SetActive(false);
+                minigamePuzzle.gameObject.SetActive(true);
+                MusicaMiniJuegoPuzzle.Play();
+            }
+        }
+
 
 
     private IEnumerator GameOverSequence()
