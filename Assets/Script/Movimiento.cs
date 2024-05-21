@@ -43,6 +43,7 @@ public class Movimiento : MonoBehaviour
     private AudioSource audioSource;
     public AudioSource Musica;
     public AudioSource Musicaminijuegocoche;
+    public AudioSource MusicaMiniJuegoPuzzle;
 
 
     bool bloqueo = false;
@@ -212,7 +213,7 @@ public class Movimiento : MonoBehaviour
     private void eligeMinijuego()
         {
             // Primero, elegimos entre el minijuego de coche o el de memoria
-            int juego = Random.Range(0, 1); // 0 para coche, 1 para memoria, 2 para puzzles
+            int juego = Random.Range(0,2); // 0 para coche, 1 para memoria, 2 para puzzles
 
 
             if (juego == 0)
@@ -247,6 +248,8 @@ public class Movimiento : MonoBehaviour
                 // Minijuego de puzzles
                 mainCamera.gameObject.SetActive(false);
                 minigamePuzzle.gameObject.SetActive(true);
+                MusicaMiniJuegoPuzzle.Play();
+
             }
         }
 
@@ -263,6 +266,7 @@ public class Movimiento : MonoBehaviour
     {
         chef.SetActive(true);  // Reactivar el objeto Chef
         Musicaminijuegocoche.Stop();  // Parar Musica
+        MusicaMiniJuegoPuzzle.Stop();  // Parar Musica
         Musica.Play();  // Reactivar Musica
     }
 
