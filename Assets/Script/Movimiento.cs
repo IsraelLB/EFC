@@ -213,7 +213,7 @@ public class Movimiento : MonoBehaviour
     private void eligeMinijuego()
         {
             // Primero, elegimos entre el minijuego de coche o el de memoria
-            int juego = Random.Range(0,2); // 0 para coche, 1 para memoria, 2 para puzzles
+            int juego = Random.Range(0,3); // 0 para coche, 1 para memoria, 2 para puzzles
 
 
             if (juego == 0)
